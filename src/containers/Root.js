@@ -4,13 +4,32 @@ import ProductView from '../components/ProductView';
 
 class Root extends Component {
 
-  onClickProduct(index) {
-    console.log('onClickProduct called with: ', arguments);
-    alert(`Clicked on product ${index}`);
+  constructor() {
+    super();
+    this.state = {};
+  }
+
+  onClickProduct(index, product) {
+    this.setState({
+      selectedIndex: index,
+      selectedProduct: product
+    })
   }
 
   render() {
     const { text, products } = this.props;
+    const { selectedProduct, selectedIndex } = this.state;
+
+    const productDetails = selectedProduct ? (
+      <div>
+        <h3>Product details for product {selectedIndex}:</h3>
+        <p>{selectedProduct.title} costs <b>{selectedProduct.price}</b> euros</p>
+      </div>
+    ) : (
+      <div>
+        <h3>Click on a product to see it's price</h3>
+      </div>
+    );
 
     return (
       <div>
@@ -21,12 +40,14 @@ class Root extends Component {
               <ProductView
                 key={i}
                 title={product.title}
-                price={product.price}
-                onClick={this.onClickProduct.bind(this, i)}
+                onClick={this.onClickProduct.bind(this, i, product)}
               />
             );
           })}
         </ul>
+
+        {productDetails}
+
       </div>
     );
   }
