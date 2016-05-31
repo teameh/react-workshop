@@ -1,6 +1,14 @@
 import React, { PropTypes, Component } from 'react';
 
+import ProductView from '../components/ProductView';
+
 class Root extends Component {
+
+  onClickProduct(index) {
+    console.log('onClickProduct called with: ', arguments);
+    alert(`Clicked on product ${index}`);
+  }
+
   render() {
     const { text, products } = this.props;
 
@@ -10,10 +18,13 @@ class Root extends Component {
         <ul>
           {products.map((product, i) => {
             return (
-              <li key={i}>
-                {product.title} - {product.price}
-              </li>
-            )
+              <ProductView
+                key={i}
+                title={product.title}
+                price={product.price}
+                onClick={this.onClickProduct.bind(this, i)}
+              />
+            );
           })}
         </ul>
       </div>
@@ -22,7 +33,7 @@ class Root extends Component {
 }
 
 Root.propTypes = {
-  text: PropTypes.object.isRequired,
+  text: PropTypes.string.isRequired,
   products: PropTypes.array.isRequired
 };
 
