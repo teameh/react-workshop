@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 
 import ProductView from '../components/ProductView';
+import ProductDetailView from '../components/ProductDetailView';
 
 class Root extends Component {
 
@@ -21,10 +22,11 @@ class Root extends Component {
     const { selectedProduct, selectedIndex } = this.state;
 
     const productDetails = selectedProduct ? (
-      <div>
-        <h3>Product details for product {selectedIndex}:</h3>
-        <p>{selectedProduct.title} costs <b>{selectedProduct.price}</b> euros</p>
-      </div>
+      <ProductDetailView
+        selectedIndex={selectedIndex}
+        title={selectedProduct.title}
+        price={selectedProduct.price}
+      />
     ) : (
       <div>
         <h3>Click on a product to see it's price</h3>
