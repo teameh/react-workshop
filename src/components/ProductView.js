@@ -3,25 +3,37 @@ import randomColor from '../utils/randomColor';
 import shallowCompare from 'react-addons-shallow-compare';
 
 export default class ProductView extends Component {
-  shouldComponentUpdate(nextProps) {
-    return this.props.title !== nextProps.title || this.props.onClick !== nextProps.onClick;
-    // return shallowCompare(this, nextProps, nextState);
+
+  constructor() {
+    super();
+    this.onClick = this.onClick.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return shallowCompare(this, nextProps, nextState);
+  }
+
+  onClick() {
+    const { productIndex, product, onClick } = this.props;
+    onClick(productIndex, product)
   }
 
   render() {
-    const { title, onClick } = this.props;
+    const { product } = this.props;
+    // const { product: { title } } = this.props;
 
-    console.count('render productview for' + title);
+    console.count('render productview for' + product.title);
 
     return (
-      <li style={{backgroundColor: randomColor()}} onClick={onClick}>
-        {title}
+      <li style={{backgroundColor: randomColor()}} onClick={this.onClick}>
+        {product.title}
       </li>
     );
   }
 };
 
 ProductView.propTypes = {
-  title: PropTypes.string.isRequired,
+  product: PropTypes.object.isRequired,
+  productIndex: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired
 };

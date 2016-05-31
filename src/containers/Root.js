@@ -8,6 +8,8 @@ class Root extends Component {
   constructor() {
     super();
     this.state = {};
+
+    this.onClickProduct = this.onClickProduct.bind(this);
   }
 
   onClickProduct(index, product) {
@@ -41,8 +43,9 @@ class Root extends Component {
             return (
               <ProductView
                 key={i}
-                title={product.title}
-                onClick={this.onClickProduct.bind(this, i, product)}
+                productIndex={i}
+                product={product}
+                onClick={this.onClickProduct}
               />
             );
           })}
