@@ -1,8 +1,13 @@
 import { createSelector } from 'reselect';
 
-const filteredProducts = (state) => {
-  const filter = state.filter;
-  const products = state.products;
+// Input selectors
+const getFilter = (state) => state.filter;
+const getProducts = (state) => state.products;
+
+// Memoized selector
+const getFilteredProducts = createSelector(
+  [getFilter, getProducts],
+  (filter, products) => {
   console.count && console.count('- recalculate products');
 
   if(!filter || filter === ''){
@@ -13,6 +18,6 @@ const filteredProducts = (state) => {
   return products.filter((product) => {
     return product.title.match(regex)
   });
-};
+});
 
-export default filteredProducts;
+export default getFilteredProducts;
