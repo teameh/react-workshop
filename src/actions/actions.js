@@ -1,4 +1,4 @@
-import { VIEW_PRODUCT_DETAILS, ADD_PRODUCT } from './ActionTypes';
+import { VIEW_PRODUCT_DETAILS, ADD_PRODUCT, CHANGE_FILTER } from './ActionTypes';
 
 export function onViewProductDetails(productIndex) {
   return {
@@ -18,5 +18,12 @@ export function onAddNewProduct(title, price) {
     type: ADD_PRODUCT,
     title: title,
     price: price
+  };
+}
+
+export function onFilter(query) {
+  return {
+    type: CHANGE_FILTER,
+    query: query
   };
 }

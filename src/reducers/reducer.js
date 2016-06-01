@@ -1,4 +1,4 @@
-import { VIEW_PRODUCT_DETAILS, ADD_PRODUCT } from '../actions/ActionTypes';
+import { VIEW_PRODUCT_DETAILS, ADD_PRODUCT, CHANGE_FILTER } from '../actions/ActionTypes';
 
 export default function reducer(state = {}, action) {
 
@@ -23,20 +23,26 @@ export default function reducer(state = {}, action) {
         selectedIndex: action.productIndex
       });
 
-      break;
-
     case ADD_PRODUCT:
       const newProduct = {
         title: action.title,
         price: action.price
       };
 
-      // Same object with new products
+      // Same object with new product
       return Object.assign({}, state, {
         products: [...state.products, newProduct]
       });
 
-      break;
+    case CHANGE_FILTER:
+      // Same object
+      return Object.assign({}, state, {
+        // with new filter
+        filter: action.query,
+        // and no selected products
+        selectedIndex: false
+      });
+
     default:
       return state;
   }

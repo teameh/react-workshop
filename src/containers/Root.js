@@ -7,6 +7,9 @@ import * as actions from '../actions/actions';
 import ProductView from '../components/ProductView';
 import ProductDetailView from '../components/ProductDetailView';
 import ProductInputView from '../components/ProductInputView';
+import ProductFilterView from '../components/ProductFilterView';
+
+import getFilteredProducts from '../selectors/getFilteredProducts';
 
 class Root extends Component {
 
@@ -38,6 +41,8 @@ class Root extends Component {
           })}
         </ul>
 
+        <ProductFilterView />
+
         {productDetails}
 
         <ProductInputView />
@@ -56,7 +61,7 @@ Root.propTypes = {
 function mapStateToProps(state) {
   return {
     text: state.text,
-    products: state.products,
+    products: getFilteredProducts(state),
     selectedIndex: state.selectedIndex
   };
 }
