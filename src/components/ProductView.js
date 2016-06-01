@@ -1,8 +1,12 @@
 import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as actions from '../actions/actions';
 import randomColor from '../utils/randomColor';
 import shallowCompare from 'react-addons-shallow-compare';
 
-export default class ProductView extends Component {
+class ProductView extends Component {
 
   constructor() {
     super();
@@ -14,26 +18,47 @@ export default class ProductView extends Component {
   }
 
   onClick() {
-    const { productIndex, onClick } = this.props;
-    onClick(productIndex)
+    const { productIndex, onViewProductDetails } = this.props;
+    onViewProductDetails(productIndex)
   }
 
   render() {
-    const { product } = this.props;
-    // const { product: { title } } = this.props;
+    const { title } = this.props;
 
-    console.count('render productview for' + product.title);
+    console.count(`render productview for ${title}`);
 
     return (
       <li style={{backgroundColor: randomColor()}} onClick={this.onClick}>
-        {product.title}
+        {title}
       </li>
     );
   }
 };
 
 ProductView.propTypes = {
-  product: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
   productIndex: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired
+  onViewProductDetails: PropTypes.func.isRequired
 };
+
+// Map Redux actions to component props
+function mapDispatchToProps(dispatch) {
+  const bindedActionCreators = bindActionCreators(actions, dispatch);
+  return {
+    onViewProductDetails: bindedActionCreators.onViewProductDetails
+  };
+
+  // or just return all of our actions
+  return bindActionCreators(actions, dispatch);
+}
+
+// Map Redux state to component props
+function mapStateToProps(state, ownProps) {
+  return {
+    productIndex: ownProps.productIndex,
+    title: state.products[ownProps.productIndex].title
+  };
+}
+
+// Connected Component
+export default connect(mapStateToProps, mapDispatchToProps)(ProductView);
