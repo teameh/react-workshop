@@ -6,6 +6,7 @@ import * as actions from '../actions/actions';
 
 import ProductView from '../components/ProductView';
 import ProductDetailView from '../components/ProductDetailView';
+import ProductInputView from '../components/ProductInputView';
 
 class Root extends Component {
 
@@ -38,6 +39,8 @@ class Root extends Component {
         </ul>
 
         {productDetails}
+
+        <ProductInputView />
 
       </div>
     );
