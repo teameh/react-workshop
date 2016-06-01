@@ -1,6 +1,8 @@
 import React, { PropTypes, Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import * as actions from '../actions/actions';
 import ProductView from '../components/ProductView';
 import ProductDetailView from '../components/ProductDetailView';
 
@@ -60,14 +62,13 @@ function mapStateToProps(state) {
 
 // Map Redux actions to component props
 function mapDispatchToProps(dispatch) {
+  const bindedActionCreators = bindActionCreators(actions, dispatch);
   return {
-    onViewProductDetails: function (productIndex) {
-      return dispatch({
-        type: 'viewProductDetails',
-        productIndex: productIndex
-      });
-    }
-  }
+    onViewProductDetails: bindedActionCreators.onViewProductDetails
+  };
+
+  // or just return all of our actions
+  // return bindActionCreators(actions, dispatch);
 }
 
 // Connected Component
