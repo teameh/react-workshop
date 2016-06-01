@@ -1,4 +1,4 @@
-import { VIEW_PRODUCT_DETAILS } from './ActionTypes';
+import { VIEW_PRODUCT_DETAILS, ADD_PRODUCT } from './ActionTypes';
 
 export function onViewProductDetails(productIndex) {
   return {
@@ -12,3 +12,11 @@ export function onViewProductDetails(productIndex) {
 //   type: VIEW_PRODUCT_DETAILS,
 //   productIndex: productIndex
 // });
+
+export function onAddNewProduct(title, price) {
+  return {
+    type: ADD_PRODUCT,
+    title: title,
+    price: price
+  };
+}

@@ -12,15 +12,18 @@ class ProductInputView extends Component {
   }
 
   onSubmit(e) {
+    const { onAddNewProduct } = this.props;
     const { title, price } = this.refs;
 
-    console.log('Add new product here. %s - %s', title.value, parseInt(price.value, 10));
+    // Add product
+    onAddNewProduct(title.value, parseInt(price.value, 10));
 
     // prevent refresh
     e.preventDefault();
 
     // reset values
-    title.value = price.value = '';
+    title.value = '';
+    price.value = '';
   }
 
   render() {
@@ -35,4 +38,14 @@ class ProductInputView extends Component {
   }
 };
 
-export default ProductInputView;
+ProductInputView.propTypes = {
+  onViewProductDetails: PropTypes.func.isRequired
+};
+
+// Map Redux actions to component props
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actions, dispatch);
+}
+
+// Connected Component
+export default connect(null, mapDispatchToProps)(ProductInputView);

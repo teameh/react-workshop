@@ -1,4 +1,4 @@
-import { VIEW_PRODUCT_DETAILS } from '../actions/ActionTypes';
+import { VIEW_PRODUCT_DETAILS, ADD_PRODUCT } from '../actions/ActionTypes';
 
 export default function reducer(state = {}, action) {
 
@@ -21,6 +21,19 @@ export default function reducer(state = {}, action) {
       // Same object with new productIndex
       return Object.assign({}, state, {
         selectedIndex: action.productIndex
+      });
+
+      break;
+
+    case ADD_PRODUCT:
+      const newProduct = {
+        title: action.title,
+        price: action.price
+      };
+
+      // Same object with new products
+      return Object.assign({}, state, {
+        products: [...state.products, newProduct]
       });
 
       break;
