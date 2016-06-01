@@ -35,6 +35,7 @@ class Root extends Component {
                 key={i}
                 title={product.title}
                 productIndex={i}
+                selected={selectedIndex === i}
                 onClick={onViewProductDetails}
               />
             );

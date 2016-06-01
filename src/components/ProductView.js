@@ -1,9 +1,11 @@
 import React, { PropTypes, Component } from 'react';
+import cssDecorator from 'react-css-modules';
 
-import randomColor from '../utils/randomColor';
 import shallowCompare from 'react-addons-shallow-compare';
 
-export default class ProductView extends Component {
+import Styles from './ProductView.scss'
+
+class ProductView extends Component {
 
   constructor() {
     super();
@@ -20,13 +22,18 @@ export default class ProductView extends Component {
   }
 
   render() {
-    const { title } = this.props;
+    const { title, productIndex, selected } = this.props;
 
     console.count(`render productview for ${title}`);
 
     return (
-      <li style={{backgroundColor: randomColor()}} onClick={this.onClick}>
-        {title}
+      <li styleName={selected ? 'product-selected' : 'product'} onClick={this.onClick}>
+        <span className='product-index'>
+          {productIndex}
+        </span>
+        <span styleName='title'>
+          {title}
+        </span>
       </li>
     );
   }
@@ -37,3 +44,6 @@ ProductView.propTypes = {
   productIndex: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired
 };
+
+export default cssDecorator(ProductView, Styles);
+

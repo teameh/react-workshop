@@ -1,0 +1,22 @@
+/* Warning empty selectors are not possible! */
+
+.product {
+  font-family: verdana, sans-serif;
+  cursor: pointer;
+}
+
+.product-selected {
+  composes: product;
+  background-color: hotpink;
+}
+
+.title {
+  text-decoration: underline;
+}
+
+:global {
+  .product-index {
+    color: gray;
+    padding-right: 5px;
+  }
+}
