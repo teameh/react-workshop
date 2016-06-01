@@ -14,8 +14,8 @@ export default class ProductView extends Component {
   }
 
   onClick() {
-    const { productIndex, product, onClick } = this.props;
-    onClick(productIndex, product)
+    const { productIndex, onClick } = this.props;
+    onClick(productIndex)
   }
 
   render() {

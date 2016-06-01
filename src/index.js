@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 import Root from './containers/Root';
+import configureStore from './store/configureStore';
 
 const text = "React Workshop!";
 
@@ -10,10 +12,14 @@ const products = [
   { title: 'Polaroid Camera', price: 150 }
 ];
 
+const store = configureStore({
+  text: text,
+  products: products,
+});
+
 render(
-  <Root
-    text={text}
-    products={products}
-  />,
+  <Provider store={store}>
+    <Root />
+  </Provider>,
   document.getElementById('root')
 );

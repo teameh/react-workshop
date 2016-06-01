@@ -1,33 +1,19 @@
 import React, { PropTypes, Component } from 'react';
+import { connect } from 'react-redux';
 
 import ProductView from '../components/ProductView';
 import ProductDetailView from '../components/ProductDetailView';
 
 class Root extends Component {
 
-  constructor() {
-    super();
-    this.state = {};
-
-    this.onClickProduct = this.onClickProduct.bind(this);
-  }
-
-  onClickProduct(index, product) {
-    this.setState({
-      selectedIndex: index,
-      selectedProduct: product
-    })
-  }
-
   render() {
-    const { text, products } = this.props;
-    const { selectedProduct, selectedIndex } = this.state;
+    const { text, products, selectedIndex = false, onViewProductDetails } = this.props;
 
-    const productDetails = selectedProduct ? (
+    const productDetails = selectedIndex !== false ? (
       <ProductDetailView
         selectedIndex={selectedIndex}
-        title={selectedProduct.title}
-        price={selectedProduct.price}
+        title={products[selectedIndex].title}
+        price={products[selectedIndex].price}
       />
     ) : (
       <div>
@@ -45,7 +31,7 @@ class Root extends Component {
                 key={i}
                 productIndex={i}
                 product={product}
-                onClick={this.onClickProduct}
+                onClick={onViewProductDetails}
               />
             );
           })}
@@ -63,4 +49,27 @@ Root.propTypes = {
   products: PropTypes.array.isRequired
 };
 
-export default Root;
+// Map Redux state to component props
+function mapStateToProps(state) {
+  return {
+    text: state.text,
+    products: state.products,
+    selectedIndex: state.selectedIndex
+  };
+}
+
+// Map Redux actions to component props
+function mapDispatchToProps(dispatch) {
+  return {
+    onViewProductDetails: function (productIndex) {
+      return dispatch({
+        type: 'viewProductDetails',
+        productIndex: productIndex
+      });
+    }
+  }
+}
+
+// Connected Component
+export default connect(mapStateToProps, mapDispatchToProps)(Root);
+
