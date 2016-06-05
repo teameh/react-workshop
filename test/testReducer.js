@@ -74,4 +74,20 @@ describe('Test Reducer', function () {
     expect(newState.products).to.have.length(5, 'Products should contain 5 products');
     expect(newState.products[4]).to.deep.equal(expectedProduct, 'Product 5 does not match expected product');
   });
+
+  it('Change Filter', function () {
+
+    const originalState = getNewExampleTestState();
+
+    deepFreeze(originalState);
+
+    // Create new action
+    const testAction = Actions.onFilter('iP');
+
+    const newState = reducer(originalState, testAction);
+
+    expect(newState).to.not.equal(originalState, 'apply-filter-action returned a different object!');
+    expect(newState.filter).to.equal('iP', 'The filter should now match the specified filter');
+    expect(newState.selectedIndex).to.equal(false, 'Product should be deselected');
+  });
 });
