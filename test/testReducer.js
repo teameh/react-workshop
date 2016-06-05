@@ -57,4 +57,21 @@ describe('Test Reducer', function () {
 
     expect(newState).to.deep.equal(expectedNewState, 'newState does not match expectedNewState');
   });
+
+  it('Add new Product', function () {
+
+    const originalState = getNewExampleTestState();
+
+    deepFreeze(originalState);
+
+    // Create new action
+    const testAction = Actions.onAddNewProduct('Product C', 200);
+    const expectedProduct = { 'title': 'Product C', 'price': 200 };
+
+    const newState = reducer(originalState, testAction);
+
+    expect(newState).to.not.equal(originalState, 'Add-new-product-action returned a different object!');
+    expect(newState.products).to.have.length(5, 'Products should contain 5 products');
+    expect(newState.products[4]).to.deep.equal(expectedProduct, 'Product 5 does not match expected product');
+  });
 });
