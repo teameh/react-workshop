@@ -1,5 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
+
+import * as actions from '../actions/actions';
 
 import ProductView from '../components/ProductView';
 import ProductDetailView from '../components/ProductDetailView';
@@ -7,7 +10,7 @@ import ProductDetailView from '../components/ProductDetailView';
 class Root extends Component {
 
   render() {
-    const { text, products, selectedIndex = false } = this.props;
+    const { text, products, selectedIndex = false, onViewProductDetails } = this.props;
 
     const productDetails = selectedIndex !== false ? (
       <ProductDetailView
@@ -26,7 +29,9 @@ class Root extends Component {
             return (
               <ProductView
                 key={i}
+                title={product.title}
                 productIndex={i}
+                onClick={onViewProductDetails}
               />
             );
           })}
@@ -53,6 +58,12 @@ function mapStateToProps(state) {
   };
 }
 
+// Map Redux actions to component props
+function mapDispatchToProps(dispatch) {
+  // or just return all of our actions
+  return bindActionCreators(actions, dispatch);
+}
+
 // Connected Component
-export default connect(mapStateToProps)(Root);
+export default connect(mapStateToProps, mapDispatchToProps)(Root);
 
