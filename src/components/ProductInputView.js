@@ -6,12 +6,7 @@ import * as actions from '../actions/actions';
 
 class ProductInputView extends Component {
 
-  constructor() {
-    super();
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onSubmit(e) {
+  onSubmit = (e) => {
     const { onAddNewProduct } = this.props;
     const { title, price } = this.refs;
 
@@ -24,7 +19,7 @@ class ProductInputView extends Component {
     // reset values
     title.value = '';
     price.value = '';
-  }
+  };
 
   render() {
     return (

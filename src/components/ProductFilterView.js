@@ -6,18 +6,13 @@ import * as actions from '../actions/actions';
 
 class ProductFilterView extends Component {
 
-  constructor() {
-    super();
-    this.onChange = this.onChange.bind(this);
-  }
-
-  onChange(e) {
+  onChange = (e) => {
     const { onFilter } = this.props;
     const { filter } = this.refs;
 
     // Add product
     onFilter(filter.value);
-  }
+  };
 
   render() {
     return (

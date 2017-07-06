@@ -7,19 +7,14 @@ import Styles from './ProductView.scss'
 
 class ProductView extends Component {
 
-  constructor() {
-    super();
-    this.onClick = this.onClick.bind(this);
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
 
-  onClick() {
+  onClick = () => {
     const { productIndex, onClick } = this.props;
     onClick(productIndex)
-  }
+  };
 
   render() {
     const { title, productIndex, selected } = this.props;
