@@ -38,9 +38,7 @@ Test
 
     Video Course: https://egghead.io/courses/getting-started-with-redux
 
-    Redux Flow animated gif: https://mobile.twitter.com/vyacheslav_de/status/728201787191267329
-
-    [(c) vyacheslav_de](https://mobile.twitter.com/vyacheslav_de/status/728201787191267329)
+    Redux Flow animated gif: https://mobile.twitter.com/vyacheslav_de/status/728201787191267329/photo/1
 
 * **Reselect:**
 
