@@ -63,41 +63,45 @@ Test
 This is a list of commits hashes of this repo, check the git log for details.
 The bullet points are possible exercises you can do.
 
-1. 758ec1f - Hello World
+1. 1567157 - Hello World
     * Fix proptypes warning
     * Experiment with changing the props of the component
     * Create and include a subcomponent
 
-2. 63f3362 - Subcomponents
+2. 36e86f3 - Subcomponents
     * Add another event handler to one of the components
 
 3. f2221a6 - Product details
     * Create a seperate subcomponent for the 'product details'
 
-4. c84edc1 - Details in own component
+4. 2a1c6b0 - Details in own component
     * Highlight the selected product (e.g. bold or underline)
 
-5. 25edf1f - Remove bind in jsx
+5. ce40bad - Remove bind in jsx
     * Don't update ProductDetailView when the props don't change
 
-6. 4b1bc3e - Added Redux
+6. ea6a4d6 - Added Redux
     * Connect subcomponent
 
-7. 6adc85a - Added ProductInputView
+7. 257b5de - Added ProductInputView
     * Implement the rest of the code that we need to add new products
 
-8. 80e2dd8 - Adding product finished
+8. e5ee20f - Adding product finished
 
-9. ad334a6 - Added unit test for adding new product
+9. 5e44efd - Added unit test for adding new product
 
-10. afccdff - Filter products
+10. 2f0bc2b - Filter products
     * Create a filter using reselect
 
-11. c2ce6db - Filter using reselect
+11. 73edd29 - Filter using reselect
     * Create something else with reselect
 
-12. 413add2 - Added test for component
+12. 0f82727 - Added test for component
     * Add more unit tests
 
-13. 8d52424 - Added styles to ProductView
+13. 66e8231 - Added styles to ProductView
     * Add more styles
+
+13. 37528a9 - .bind(this), using babel-plugin-transform-class-properties
+    * (needs `npm i` after this)
+
